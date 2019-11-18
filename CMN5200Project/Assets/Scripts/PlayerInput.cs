@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using UnityEngine;
+
 public class PlayerInput : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
 
     public IInputController controller;
 
-    public CharacterController2D characterController;
+    private CharacterController2D _CharacterController;
 
     public float moveSpeed = 40f;
     private bool jump = false;
@@ -16,7 +14,8 @@ public class PlayerInput : MonoBehaviour
 
     public void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
+        _CharacterController = GetComponent<CharacterController2D>();
     }
     public void Update()
     {
@@ -45,25 +44,25 @@ public class PlayerInput : MonoBehaviour
     {
         Debug.Log("Fixed Running");
         Debug.Log(horizontalMovement);
-        characterController.Move(horizontalMovement * moveSpeed * Time.fixedDeltaTime, false, jump);
+        _CharacterController.Move(horizontalMovement * moveSpeed * Time.fixedDeltaTime, false, jump);
         jump = false;
     }
     public void Jump() 
     {
-        //rb.AddForce(Vector2.up*5, ForceMode2D.Impulse);
+        //_rb.AddForce(Vector2.up*5, ForceMode2D.Impulse);
         jump = true;
         Debug.Log("Jumping");
     }
     public void Left() 
     {
         horizontalMovement = -1;
-        //rb.AddForce(Vector2.right * (-3), ForceMode2D.Force);
+        //_rb.AddForce(Vector2.right * (-3), ForceMode2D.Force);
        // Debug.Log("Left " + horizontalMovement);
     }
     public void Right() 
     {
         horizontalMovement = 1;
-        //rb.AddForce(Vector2.right * 3, ForceMode2D.Force);
+        //_rb.AddForce(Vector2.right * 3, ForceMode2D.Force);
        // Debug.Log("Right " + horizontalMovement);
     }
     public void Interact() 

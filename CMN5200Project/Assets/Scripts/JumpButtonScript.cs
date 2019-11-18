@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/*
+ *  Extends the UnityEngine.UI.Button class so that we can override
+ *  some of the base functions to allow for greater controll
+*/
 public class JumpButtonScript : Button
 {
     bool isPressed = false;

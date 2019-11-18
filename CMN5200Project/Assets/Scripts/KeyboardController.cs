@@ -1,6 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+/*
+ * Basic Keyboard Input for the game for quick Testing.
+ */
 
 [CreateAssetMenu(fileName ="KeyboardInput",menuName = "Input/Keyboard",order =0)]
 public class KeyboardController : IInputController
