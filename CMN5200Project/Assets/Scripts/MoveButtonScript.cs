@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonScript : Button
+public class MoveButtonScript : Button
 {
     bool isPressed = false;
     private void Update()
