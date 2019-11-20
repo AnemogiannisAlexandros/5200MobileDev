@@ -6,8 +6,13 @@ public class PlayerInput : MonoBehaviour
 
     public IInputController controller;
 
+    private InteractionHandler interactionHandler;
     private PlayerState curentState;
 
+    public void SetPlayerState(PlayerState state) 
+    {
+        curentState = state;
+    }
     public enum PlayerState 
     {
         Normal,
@@ -21,6 +26,7 @@ public class PlayerInput : MonoBehaviour
 
     public void Start()
     {
+        interactionHandler = GetComponent<InteractionHandler>();
         curentState = PlayerState.Normal;
         _rb = GetComponent<Rigidbody2D>();
         _CharacterController = GetComponent<CharacterController2D>();
@@ -58,7 +64,9 @@ public class PlayerInput : MonoBehaviour
         }
         else if (curentState == PlayerState.Interacting) 
         {
-            Debug.Log("Interacting ATM");
+            Debug.Log("Running Second");
+            _CharacterController.Move(horizontalMovement * moveSpeed * Time.fixedDeltaTime, false, false, true);
+            jump = false;
         }
         
     }
@@ -81,7 +89,8 @@ public class PlayerInput : MonoBehaviour
        // Debug.Log("Right " + horizontalMovement);
     }
     public void Interact()
-    { 
-        Debug.Log("Interacting");
+    {
+        interactionHandler.Interact();
+        Debug.Log("Called");
     }
 }
