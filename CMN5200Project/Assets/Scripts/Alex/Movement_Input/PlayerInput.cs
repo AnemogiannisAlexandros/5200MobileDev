@@ -6,6 +6,13 @@ public class PlayerInput : MonoBehaviour
 
     public IInputController controller;
 
+    private PlayerState curentState;
+
+    public enum PlayerState 
+    {
+        Normal,
+        Interacting,
+    }
     private CharacterController2D _CharacterController;
 
     public float moveSpeed = 40f;
@@ -14,6 +21,7 @@ public class PlayerInput : MonoBehaviour
 
     public void Start()
     {
+        curentState = PlayerState.Normal;
         _rb = GetComponent<Rigidbody2D>();
         _CharacterController = GetComponent<CharacterController2D>();
     }
@@ -42,10 +50,17 @@ public class PlayerInput : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        Debug.Log("Fixed Running");
-        Debug.Log(horizontalMovement);
-        _CharacterController.Move(horizontalMovement * moveSpeed * Time.fixedDeltaTime, false, jump);
-        jump = false;
+        if (curentState == PlayerState.Normal)
+        {
+            Debug.Log(horizontalMovement);
+            _CharacterController.Move(horizontalMovement * moveSpeed * Time.fixedDeltaTime, false, jump, false);
+            jump = false;
+        }
+        else if (curentState == PlayerState.Interacting) 
+        {
+            Debug.Log("Interacting ATM");
+        }
+        
     }
     public void Jump() 
     {
@@ -65,8 +80,8 @@ public class PlayerInput : MonoBehaviour
         //_rb.AddForce(Vector2.right * 3, ForceMode2D.Force);
        // Debug.Log("Right " + horizontalMovement);
     }
-    public void Interact() 
-    {
-        Debug.Log("teracting");
+    public void Interact()
+    { 
+        Debug.Log("Interacting");
     }
 }

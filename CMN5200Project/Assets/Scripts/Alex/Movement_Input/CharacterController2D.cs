@@ -8,11 +8,13 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
-    [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
+    [SerializeField] private Transform m_LeftSideCheck;                         // A Position Marking the left side of the player to check if grounded
+    [SerializeField] private Transform m_RightSideCheck;                        // A Position Marking the right side of the player to check if grounded
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
 
-    const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+    private Animator m_animator;          //Animator component of our Object
+    //const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     private Rigidbody2D m_Rigidbody2D;
@@ -32,6 +34,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
     {
+        m_animator = GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
         if (OnLandEvent == null)
@@ -46,22 +49,38 @@ public class CharacterController2D : MonoBehaviour
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
 
-        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-        // This can be done using layers instead.
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-        for (int i = 0; i < colliders.Length; i++)
+        //Player is grounded if the Raycast Hits a collider within the mask GROUND
+        RaycastHit2D colliderHitRight = Physics2D.Raycast(m_RightSideCheck.position, Vector2.down,100, m_WhatIsGround);
+        RaycastHit2D colliderHitLeft = Physics2D.Raycast(m_LeftSideCheck.position, Vector2.down, 100, m_WhatIsGround);
+        if (colliderHitRight.collider != null || colliderHitLeft.collider !=null)
         {
-            if (colliders[i].gameObject != gameObject)
+            if (colliderHitRight.collider.gameObject != gameObject || colliderHitLeft.collider.gameObject!=gameObject)
             {
-                m_Grounded = true;
-                if (!wasGrounded)
-                    OnLandEvent.Invoke();
+                Debug.Log("Hit Ground");
+                if (colliderHitRight.distance <= 0.1f || colliderHitLeft.distance < 0.1f)
+                {
+                    m_Grounded = true;
+                    if (!wasGrounded)
+                        OnLandEvent.Invoke();
+                    if (colliderHitRight.distance <= 0.1f && colliderHitLeft.distance <= 0.1f)
+                    {
+                        Debug.Log("Both Rays Hitting Ground");
+                    }
+                    else
+                    {
+                        //ToDo Play Lean Animation
+                        Debug.Log("Leaning to some side");
+                    }
+                }
             }
         }
+        Debug.DrawRay(m_LeftSideCheck.position, Vector2.down,Color.red);
+        Debug.DrawRay(m_RightSideCheck.position, Vector2.down, Color.red);
+        m_animator.SetBool("IsGrounded", m_Grounded);
     }
 
 
-    public void Move(float move, bool crouch, bool jump)
+    public void Move(float move, bool crouch, bool jump,bool pullingObject)
     {
         // If crouching, check to see if the character can stand up
         if (!crouch)
@@ -72,7 +91,10 @@ public class CharacterController2D : MonoBehaviour
                 crouch = true;
             }
         }
-
+        if (pullingObject) 
+        {
+            move *= m_CrouchSpeed;
+        }
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
@@ -111,6 +133,14 @@ public class CharacterController2D : MonoBehaviour
             // And then smoothing it out and applying it to the character
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
+            if (move != 0)
+            {
+                m_animator.SetBool("IsMoving", true);
+            }
+            else 
+            {
+                m_animator.SetBool("IsMoving", false);
+            }
             // If the input is moving the player right and the player is facing left...
             if (move > 0 && !m_FacingRight)
             {
@@ -129,6 +159,7 @@ public class CharacterController2D : MonoBehaviour
         {
             // Add a vertical force to the player.
             m_Grounded = false;
+            m_animator.SetTrigger("Jump");
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
     }

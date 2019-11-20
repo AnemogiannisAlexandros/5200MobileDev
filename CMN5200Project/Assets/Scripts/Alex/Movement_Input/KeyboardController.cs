@@ -14,7 +14,7 @@ public class KeyboardController : IInputController
 
     public override bool InteractKeyPressed()
     {
-        return Input.GetKeyDown(interactKey);
+        return Input.GetKey(interactKey);
     }
 
     public override bool JumpKeyPressed()
