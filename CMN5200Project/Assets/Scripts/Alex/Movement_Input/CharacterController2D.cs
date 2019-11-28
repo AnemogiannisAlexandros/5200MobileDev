@@ -158,9 +158,9 @@ public class CharacterController2D : MonoBehaviour
         if (m_Grounded && jump)
         {
             // Add a vertical force to the player.
-            m_Grounded = false;
             m_animator.SetTrigger("Jump");
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            m_Grounded = false;
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce),ForceMode2D.Impulse);
         }
     }
 

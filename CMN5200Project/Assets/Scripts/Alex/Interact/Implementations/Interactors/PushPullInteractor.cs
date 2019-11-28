@@ -34,7 +34,7 @@ public class PushPullInteractor : IInteractor
         base.Interact();
         Debug.Log("Hit : " + raycastHit.collider.name);
         GameObject obj = raycastHit.collider.gameObject;
-        float xDistance = GetComponent<BoxCollider2D>().size.x / 2 + obj.transform.localScale.x / 2 + 0.3f;
+        float xDistance = GetComponent<CapsuleCollider2D>().size.x / 2 + obj.transform.localScale.x / 2 + 3f;
         obj.transform.position = transform.position + transform.right * xDistance * transform.localScale.x;
         obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
