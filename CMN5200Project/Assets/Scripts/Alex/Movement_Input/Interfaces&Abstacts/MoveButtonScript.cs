@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class MoveButtonScript : Button
 {
     bool isPressed = false;
-    private void Update()
+    private void LateUpdate()
     {
         if (isPressed) 
         {
