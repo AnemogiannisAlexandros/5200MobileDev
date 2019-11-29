@@ -19,10 +19,6 @@ public class InteractionHandler : MonoBehaviour
     private void Update()
     {
         interactor.InteractCondition();
-        if (!interactor.CanInteract()) 
-        {
-            GetComponent<PlayerInput>().SetPlayerState(PlayerInput.PlayerState.Normal);
-        }
     }
     public void SetInteractor(IInteractor interactor) 
     {

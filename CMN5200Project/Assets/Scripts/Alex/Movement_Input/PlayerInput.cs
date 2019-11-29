@@ -49,9 +49,13 @@ public class PlayerInput : MonoBehaviour
         {
             horizontalMovement = 0;
         }
-        if (controller.InteractKeyPressed()) 
+        if (controller.InteractKeyPressed())
         {
             Interact();
+        }
+        else
+        {
+            curentState = PlayerState.Normal;
         }
     }
     public void FixedUpdate()
@@ -64,7 +68,7 @@ public class PlayerInput : MonoBehaviour
         }
         else if (curentState == PlayerState.Interacting) 
         {
-            Debug.Log("Running Second");
+           // Debug.Log("Running Second");
             _CharacterController.Move(horizontalMovement * moveSpeed * Time.fixedDeltaTime, false, false, true);
             jump = false;
         }
@@ -74,7 +78,7 @@ public class PlayerInput : MonoBehaviour
     {
         //_rb.AddForce(Vector2.up*5, ForceMode2D.Impulse);
         jump = true;
-        Debug.Log("Jumping");
+       // Debug.Log("Jumping");
     }
     public void Left() 
     {
@@ -91,6 +95,6 @@ public class PlayerInput : MonoBehaviour
     public void Interact()
     {
         interactionHandler.Interact();
-        Debug.Log("Called");
+      //  Debug.Log("Called");
     }
 }
