@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5130,8 +5130,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &156474357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5150,8 +5148,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 137c605350849a743b8a4644b7de27be, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -5247,7 +5243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453946636}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5405,7 +5401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 876146708}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightSideGroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10360,13 +10356,9 @@ MonoBehaviour:
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Cinemachine, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+VcamActivatedEvent, Cinemachine, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1306931624 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4410743778457353393, guid: 8f0109fd3f6c372428c5703e945f72dd,
@@ -10571,8 +10563,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1307488884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10591,8 +10581,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 01b741f16dda06c4fbe68d6251587847, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -10703,7 +10691,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -10802,8 +10790,6 @@ MonoBehaviour:
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: Cinemachine.CinemachineBrain+VcamActivatedEvent, Cinemachine, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2024772673}
 --- !u!4 &1554174960
@@ -10830,7 +10816,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1624391543}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeftSideGroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10860,7 +10846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1657851446}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlayerPlaceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10893,6 +10879,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DemoScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411214709358488067, guid: 8f0109fd3f6c372428c5703e945f72dd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410907873265738674, guid: 8f0109fd3f6c372428c5703e945f72dd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411131292740948124, guid: 8f0109fd3f6c372428c5703e945f72dd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411131293869675633, guid: 8f0109fd3f6c372428c5703e945f72dd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1323214511817170400, guid: 8f0109fd3f6c372428c5703e945f72dd,
         type: 3}
@@ -11064,11 +11070,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 4410907873265738674, guid: 8f0109fd3f6c372428c5703e945f72dd,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 4411024453128142694, guid: 8f0109fd3f6c372428c5703e945f72dd,
         type: 3}
       propertyPath: m_Layer
@@ -11128,21 +11129,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
       value: 0.74198216
-      objectReference: {fileID: 0}
-    - target: {fileID: 4411131292740948124, guid: 8f0109fd3f6c372428c5703e945f72dd,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4411131293869675633, guid: 8f0109fd3f6c372428c5703e945f72dd,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4411214709358488067, guid: 8f0109fd3f6c372428c5703e945f72dd,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4409685000549117020, guid: 8f0109fd3f6c372428c5703e945f72dd, type: 3}
@@ -11237,8 +11223,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1838667047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11257,8 +11241,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 90bd95b9cd8e8f44ebb15453b5fa16cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -16063,7 +16045,7 @@ MonoBehaviour:
   m_AirSpeed: 0.354
   m_CrouchSpeed: 0.705
   m_MovementSmoothing: 0
-  m_AirControl: 0
+  m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 1536
@@ -16074,13 +16056,9 @@ MonoBehaviour:
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: CharacterController2D+BoolEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1982132470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16171,8 +16149,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 974fd4633f76fe24b854d48b461656a1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -16241,8 +16217,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2024772672
 GameObject:
   m_ObjectHideFlags: 3
@@ -16346,7 +16320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2116540994}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16376,7 +16350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424997118022164618}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16408,7 +16382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997118046502733}
   - component: {fileID: 424997118046502734}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLegIK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16480,7 +16454,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 5
   m_BoneTransforms:
   - {fileID: 424997119094742299}
 --- !u!1 &424997118049638553
@@ -16494,7 +16468,7 @@ GameObject:
   - component: {fileID: 424997118049638554}
   - component: {fileID: 424997118049638533}
   - component: {fileID: 424997118049638555}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16551,7 +16525,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 5
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -16575,7 +16549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997118061221002}
   - component: {fileID: 424997118061221001}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLegIK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16640,7 +16614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997118061737474}
   - component: {fileID: 424997118061737475}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLegBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16755,7 +16729,8 @@ GameObject:
   - component: {fileID: 1982132469}
   - component: {fileID: 1982132470}
   - component: {fileID: 424997118120584152}
-  m_Layer: 0
+  - component: {fileID: 424997118120584153}
+  m_Layer: 11
   m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -16778,6 +16753,32 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -1.02}
   m_Size: {x: 3.5, y: 7.54}
   m_Direction: 0
+--- !u!61 &424997118120584153
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424997118120584151}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 3, y: -1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4, y: 8}
+  m_EdgeRadius: 0
 --- !u!1 &424997118122009105
 GameObject:
   m_ObjectHideFlags: 0
@@ -16789,7 +16790,7 @@ GameObject:
   - component: {fileID: 424997118122009106}
   - component: {fileID: 424997118122009117}
   - component: {fileID: 424997118122009107}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RCoat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16846,7 +16847,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 4
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -16878,7 +16879,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 4
   m_BoneTransforms:
   - {fileID: 424997119094742299}
   - {fileID: 424997119236369461}
@@ -16892,7 +16893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997118347389678}
   - component: {fileID: 424997118347389679}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: UpperRLegBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16970,7 +16971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997118611506208}
   - component: {fileID: 424997118611506209}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LCoatBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17013,7 +17014,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 4
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -17044,7 +17045,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 4
   m_BoneTransforms:
   - {fileID: 424997119489570925}
 --- !u!1 &424997118614422090
@@ -17058,7 +17059,7 @@ GameObject:
   - component: {fileID: 424997118614422091}
   - component: {fileID: 424997118614422070}
   - component: {fileID: 424997118614422068}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17104,7 +17105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424997118910288312}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17121,7 +17122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997119001540562}
   - component: {fileID: 424997119001540563}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: UpperLLegBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17209,7 +17210,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 4
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -17240,7 +17241,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 4
   m_BoneTransforms:
   - {fileID: 424997119001540562}
 --- !u!1 &424997119039882951
@@ -17254,7 +17255,7 @@ GameObject:
   - component: {fileID: 424997119039882944}
   - component: {fileID: 424997119039882947}
   - component: {fileID: 424997119039882945}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LUpperLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17287,7 +17288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997119094742299}
   - component: {fileID: 424997119094742276}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TorsoBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17352,7 +17353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997119113559448}
   - component: {fileID: 424997119113559449}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HeadBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17376,7 +17377,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_BoneTransforms:
   - {fileID: 424997119094742299}
   - {fileID: 424997119113559448}
@@ -17392,7 +17393,7 @@ GameObject:
   - component: {fileID: 424997119181507686}
   - component: {fileID: 424997119181507681}
   - component: {fileID: 424997119181507687}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17449,7 +17450,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -17482,7 +17483,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 4
   m_BoneTransforms:
   - {fileID: 424997118061737474}
 --- !u!1 &424997119190833624
@@ -17496,7 +17497,7 @@ GameObject:
   - component: {fileID: 424997119190833625}
   - component: {fileID: 424997119190833604}
   - component: {fileID: 424997119190833626}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17553,7 +17554,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 4
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -17577,7 +17578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997119206258674}
   - component: {fileID: 424997119206258675}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HipBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17627,7 +17628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997119236369461}
   - component: {fileID: 424997119236369462}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RCoatBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17674,7 +17675,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997119489570925}
   - component: {fileID: 424997119489570926}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLegBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17747,7 +17748,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 4
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -17778,7 +17779,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -2
+  m_SortingOrder: 4
   m_BoneTransforms:
   - {fileID: 424997118347389678}
 --- !u!1 &424997119597167498
@@ -17792,7 +17793,7 @@ GameObject:
   - component: {fileID: 424997119597167499}
   - component: {fileID: 424997119597167478}
   - component: {fileID: 424997119597167476}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RUpperLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17839,7 +17840,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424997119866499579}
   - component: {fileID: 424997119866499556}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HoodBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17910,7 +17911,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -17942,7 +17943,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_BoneTransforms:
   - {fileID: 424997119094742299}
   - {fileID: 424997118611506208}
@@ -17957,7 +17958,7 @@ GameObject:
   - component: {fileID: 424997119976201992}
   - component: {fileID: 424997119976201995}
   - component: {fileID: 424997119976201993}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LCoat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
