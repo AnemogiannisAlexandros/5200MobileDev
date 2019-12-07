@@ -72,6 +72,7 @@ public class PlayerInput : MonoBehaviour
             _CharacterController.Move(horizontalMovement * moveSpeed * Time.fixedDeltaTime, false, false, true);
             jump = false;
         }
+        _CharacterController.NormalizeSlope();
         
     }
     public void Jump() 

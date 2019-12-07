@@ -86,34 +86,35 @@ public class CharacterController2D : MonoBehaviour
         Debug.DrawRay(m_LeftSideCheck.position, Vector2.down,Color.red);
         Debug.DrawRay(m_RightSideCheck.position, Vector2.down, Color.red);
         m_animator.SetBool("IsGrounded", m_Grounded);
-        NormalizeSlope();
     }
 
 
-    void NormalizeSlope()
+    public void NormalizeSlope()
     {
-        // Attempt vertical normalization
-        //if (m_Grounded)
-        //{
-        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, Mathf.Infinity, m_WhatIsGround);
-        //    Debug.DrawLine(transform.position, transform.position - Vector3.up * 100);
-        //    Debug.DrawLine(hit.point, hit.point - hit.normal, Color.green);
-        //    Debug.Log(hit.normal.x);
-        //    if (hit.collider != null && Mathf.Abs(hit.normal.x) > 0f)
-        //    {
+       // Attempt vertical normalization
+        if (m_Grounded)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, Mathf.Infinity, m_WhatIsGround);
+            Debug.DrawLine(transform.position, transform.position - Vector3.up * 100);
+            Debug.DrawLine(hit.point, hit.point + hit.normal, Color.green);
+            Debug.Log(hit.normal.x);
+            if (hit.collider != null && Mathf.Abs(hit.normal.x) > 0f)
+            {
 
-        //        Rigidbody2D body = GetComponent<Rigidbody2D>();
-        //        // Apply the opposite force against the slope force 
-        //        // You will need to provide your own slopeFriction to stabalize movement
-        //        body.velocity = new Vector2(body.velocity.x - (hit.normal.x * m_slopeFriction), body.velocity.y);
+                // Apply the opposite force against the slope force 
+                // You will need to provide your own slopeFriction to stabalize movement
 
-        //        //Move Player up or down to compensate for the slope below them
-        //        //Vector3 pos = transform.position;
-        //        //pos.y += -hit.normal.x * Mathf.Abs(body.velocity.x) * Time.deltaTime * (body.velocity.x - hit.normal.x > 0 ? 1 : -1);
-        //        //transform.position = pos;
-        //        Debug.Log("Function Works");
-        //    }
-        //}
+
+                // ORIGINAL SCRIPT!!!!! 
+                m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x - (hit.normal.x * m_slopeFriction), m_Rigidbody2D.velocity.y);
+
+                ////Move Player up or down to compensate for the slope below them
+                //Vector3 pos = transform.position;
+                //pos.y += -hit.normal.x * Mathf.Abs(m_Rigidbody2D.velocity.x) * Time.deltaTime * (m_Rigidbody2D.velocity.x - hit.normal.x > 0 ? 1 : -1);
+                //transform.position = pos;
+                Debug.Log("Function Works");
+            }
+        }
     }
 
     public void Move(float move, bool crouch, bool jump,bool pullingObject)
