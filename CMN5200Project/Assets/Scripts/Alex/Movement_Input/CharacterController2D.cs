@@ -13,6 +13,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_RightSideCheck;                        // A Position Marking the right side of the player to check if grounded
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
+    [Range(0,1)] [SerializeField] private float m_slopeFriction;                // A generic value of the friction in the game.
 
     private Animator m_animator;          //Animator component of our Object
     //const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -58,12 +59,12 @@ public class CharacterController2D : MonoBehaviour
             if (colliderHitRight.collider.gameObject != gameObject || colliderHitLeft.collider.gameObject!=gameObject)
             {
                 Debug.Log("Hit Ground");
-                if (colliderHitRight.distance <= 0.1f || colliderHitLeft.distance < 0.1f)
+                if (colliderHitRight.distance <= 0.4f || colliderHitLeft.distance < 0.4f)
                 {
                     m_Grounded = true;
                     if (!wasGrounded)
                         OnLandEvent.Invoke();
-                    if (colliderHitRight.distance <= 0.1f && colliderHitLeft.distance <= 0.1f)
+                    if (colliderHitRight.distance <= 0.4f && colliderHitLeft.distance <= 0.4f)
                     {
                         Debug.Log("Both Rays Hitting Ground");
                     }
@@ -81,27 +82,31 @@ public class CharacterController2D : MonoBehaviour
         NormalizeSlope();
     }
 
-    
+
     void NormalizeSlope()
     {
         // Attempt vertical normalization
-        if (m_Grounded)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 3f, m_WhatIsGround);
-            Debug.DrawLine(transform.position, transform.position - Vector3.up * 3f,Color.magenta);
-            if (hit.collider != null && Mathf.Abs(hit.normal.x) > 0.1f)
-            {
-                Rigidbody2D body = GetComponent<Rigidbody2D>();
-                // Apply the opposite force against the slope force 
-                // You will need to provide your own slopeFriction to stabalize movement
-                body.velocity = new Vector2(body.velocity.x - (hit.normal.x * 0.5f), body.velocity.y);
+        //if (m_Grounded)
+        //{
+        //    RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, Mathf.Infinity, m_WhatIsGround);
+        //    Debug.DrawLine(transform.position, transform.position - Vector3.up * 100);
+        //    Debug.DrawLine(hit.point, hit.point - hit.normal, Color.green);
+        //    Debug.Log(hit.normal.x);
+        //    if (hit.collider != null && Mathf.Abs(hit.normal.x) > 0f)
+        //    {
 
-                //Move Player up or down to compensate for the slope below them
-                Vector3 pos = transform.position;
-                pos.y += -hit.normal.x * Mathf.Abs(body.velocity.x) * Time.deltaTime * (body.velocity.x - hit.normal.x > 0 ? 1 : -1);
-                transform.position = pos;
-            }
-        }
+        //        Rigidbody2D body = GetComponent<Rigidbody2D>();
+        //        // Apply the opposite force against the slope force 
+        //        // You will need to provide your own slopeFriction to stabalize movement
+        //        body.velocity = new Vector2(body.velocity.x - (hit.normal.x * m_slopeFriction), body.velocity.y);
+
+        //        //Move Player up or down to compensate for the slope below them
+        //        //Vector3 pos = transform.position;
+        //        //pos.y += -hit.normal.x * Mathf.Abs(body.velocity.x) * Time.deltaTime * (body.velocity.x - hit.normal.x > 0 ? 1 : -1);
+        //        //transform.position = pos;
+        //        Debug.Log("Function Works");
+        //    }
+        //}
     }
 
     public void Move(float move, bool crouch, bool jump,bool pullingObject)
