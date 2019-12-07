@@ -67,11 +67,18 @@ public class CharacterController2D : MonoBehaviour
                     if (colliderHitRight.distance <= 0.4f && colliderHitLeft.distance <= 0.4f)
                     {
                         Debug.Log("Both Rays Hitting Ground");
+                        m_animator.SetInteger("LeanValue", 0);
                     }
-                    else
+                    else if (colliderHitRight.distance > 0.4f && colliderHitLeft.distance <= 0.4f)
                     {
                         //ToDo Play Lean Animation
-                        Debug.Log("Leaning to some side");
+                        Debug.Log("Leaning to Right side");
+                        m_animator.SetInteger("LeanValue", 1);
+                    }
+                    else 
+                    {
+                        Debug.Log("Leaning to Left side");
+                        m_animator.SetInteger("LeanValue", 0);
                     }
                 }
             }
@@ -162,13 +169,18 @@ public class CharacterController2D : MonoBehaviour
                 Vector3 targetVelocity = new Vector2(move * 10, m_Rigidbody2D.velocity.y);
                 // And then smoothing it out and applying it to the character
                 m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+                m_animator.SetBool("IsFalling", false);
             }
             else
             {
                 // Move the character by finding the target velocity
                 Vector3 targetVelocity = new Vector2(move * 10, m_Rigidbody2D.velocity.y);
                 // And then smoothing it out and applying it to the character
-                m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, .3f);
+                m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+                if (m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) 
+                {
+                    m_animator.SetBool("IsFalling", true);
+                }
             }
            
            
