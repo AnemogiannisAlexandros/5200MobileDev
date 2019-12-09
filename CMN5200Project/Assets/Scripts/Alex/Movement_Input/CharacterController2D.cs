@@ -34,6 +34,10 @@ public class CharacterController2D : MonoBehaviour
     public BoolEvent OnCrouchEvent;
     private bool m_wasCrouching = false;
 
+    public bool IsGrounded() 
+    {
+        return m_Grounded;
+    }
     private void Awake()
     {
         m_animator = GetComponent<Animator>();
@@ -59,17 +63,17 @@ public class CharacterController2D : MonoBehaviour
             if (colliderHitRight.collider.gameObject != gameObject || colliderHitLeft.collider.gameObject!=gameObject)
             {
                 Debug.Log("Hit Ground");
-                if (colliderHitRight.distance <= 0.4f || colliderHitLeft.distance < 0.4f)
+                if (colliderHitRight.distance <= 0.1f || colliderHitLeft.distance < 0.1f)
                 {
                     m_Grounded = true;
                     if (!wasGrounded)
                         OnLandEvent.Invoke();
-                    if (colliderHitRight.distance <= 0.4f && colliderHitLeft.distance <= 0.4f)
+                    if (colliderHitRight.distance <= 1f && colliderHitLeft.distance <= 1f)
                     {
                         Debug.Log("Both Rays Hitting Ground");
                         m_animator.SetInteger("LeanValue", 0);
                     }
-                    else if (colliderHitRight.distance > 0.4f && colliderHitLeft.distance <= 0.4f)
+                    else if (colliderHitRight.distance > 1f && colliderHitLeft.distance <= 1f)
                     {
                         //ToDo Play Lean Animation
                         Debug.Log("Leaning to Right side");

@@ -7,12 +7,14 @@ public class PushPullInteractor : IInteractor
     [SerializeField] private LayerMask m_Interactable;
     [SerializeField] private float raycastDistance;
     private Collider2D raycastHit;
-    private BoxCollider2D interactionCollider;
+    [SerializeField] private BoxCollider2D interactionCollider;
     bool foundObject;
+    CharacterController2D controller2D;
 
     private void Awake()
     {
         interactionCollider = GetComponent<BoxCollider2D>();
+        controller2D = GetComponent<CharacterController2D>();
     }
     public override void InteractCondition()
     {
@@ -29,7 +31,7 @@ public class PushPullInteractor : IInteractor
         //    {
         //        if (raycastHit.distance <= raycastDistance)
         //        {
-        if (foundObject)
+        if (foundObject && controller2D.IsGrounded())
         {
             Debug.Log("Hittin Collider");
             canInteract = true;
@@ -48,6 +50,8 @@ public class PushPullInteractor : IInteractor
         obj.transform.position = Vector3.MoveTowards(obj.transform.position, (transform.position + transform.right * xDistance / 2 * transform.localScale.x * 1.3f), 0.5f);
         // = transform.position + transform.right * xDistance/2 * transform.localScale.x *1.3f;
         obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        obj.transform.eulerAngles = new Vector3(0,0,0);
+        obj.GetComponent<Rigidbody2D>().angularVelocity = 0;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
