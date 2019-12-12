@@ -51,7 +51,7 @@ public partial class Ferr2DT_PathTerrain {
     /// </summary>
     public int      splitCount      = 4;
     /// <summary>
-    /// [Legacy] A modifier that allows you to specify a multiplier for many cuts go into the fill/collider relative to the initial value
+    /// [Legacy] A modifier that allows you to specify a multiplier for many cuts go into the fill/_Collider relative to the initial value
     /// </summary>
 	[Range(0.1f, 4)]
     public float    splitDist       = 1;
@@ -66,11 +66,11 @@ public partial class Ferr2DT_PathTerrain {
     /// </summary>
     public bool     randomByWorldCoordinates = false;
 	/// <summary>
-    /// [Legacy] Should we generate a collider on Start?
+    /// [Legacy] Should we generate a _Collider on Start?
     /// </summary>
     public bool     createCollider    = true;
 	/// <summary>
-	/// [Legacy] Use this to force a 3D mesh collider instead of a 2D collider
+	/// [Legacy] Use this to force a 3D mesh _Collider instead of a 2D _Collider
 	/// </summary>
 	public bool     create3DCollider  = false;
 	/// <summary>
@@ -78,7 +78,7 @@ public partial class Ferr2DT_PathTerrain {
     /// </summary>
     public bool     sharpCorners           = false;
     /// <summary>
-    /// [Legacy] How far should the collider edges be extended to create a sharp corner?
+    /// [Legacy] How far should the _Collider edges be extended to create a sharp corner?
     /// </summary>
     public float    sharpCornerDistance    = 2;
 	/// <summary>
@@ -86,12 +86,12 @@ public partial class Ferr2DT_PathTerrain {
     /// </summary>
     public bool     smoothSphereCollisions = false;
 	/// <summary>
-    /// [Legacy] For offseting the collider, so it can line up with stuff better visually. On fill = None terrain,
+    /// [Legacy] For offseting the _Collider, so it can line up with stuff better visually. On fill = None terrain,
     /// this behaves significantly different than regular closed terrain.
     /// </summary>
     public float[]  surfaceOffset          = new float[] {0,0,0,0};
 	/// <summary>
-	/// [Legacy]Use a 2D edge collider instead of a polygon collider
+	/// [Legacy]Use a 2D edge _Collider instead of a polygon _Collider
 	/// </summary>
 	public bool     useEdgeCollider   = false;
 	/// <summary> [Legacy] </summary>
@@ -166,7 +166,7 @@ public partial class Ferr2DT_PathTerrain {
 		cutOverrides       = null;
 		vertScales         = null;
 
-		// upgrade collider settings
+		// upgrade _Collider settings
 		if (createCollider) {
 			if (useEdgeCollider) colliderMode = Ferr2D_ColliderMode.Edge2D;
 			else if (create3DCollider) colliderMode = Ferr2D_ColliderMode.Mesh3D;
@@ -721,7 +721,7 @@ public partial class Ferr2DT_PathTerrain {
 				colliders.Add(edge);
 			}
 		} else {
-			// make sure there's a collider component on this object
+			// make sure there's a _Collider component on this object
 			PolygonCollider2D poly = GetComponent<PolygonCollider2D>();
 			if (poly == null) {
 				poly = gameObject.AddComponent<PolygonCollider2D>();

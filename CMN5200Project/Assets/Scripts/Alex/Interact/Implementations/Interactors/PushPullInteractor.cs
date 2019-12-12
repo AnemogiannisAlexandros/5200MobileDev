@@ -25,9 +25,9 @@ public class PushPullInteractor : IInteractor
         //Debug.Log(canInteract);
         //Debug.Log(raycastHit.point);
 
-        //if (raycastHit.collider != null)
+        //if (raycastHit._Collider != null)
         //{
-        //    if (raycastHit.collider.gameObject != gameObject)
+        //    if (raycastHit._Collider.gameObject != gameObject)
         //    {
         //        if (raycastHit.distance <= raycastDistance)
         //        {

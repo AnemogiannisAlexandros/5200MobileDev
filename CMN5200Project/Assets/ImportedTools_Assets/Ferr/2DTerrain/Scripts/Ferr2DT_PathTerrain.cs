@@ -150,15 +150,15 @@ public partial class Ferr2DT_PathTerrain : MonoBehaviour, Ferr2D_IPath, IBlendPa
 	/// </summary>
 	public float    fillSplitDistance = 4;
 	/// <summary>
-	/// Indicates the collider will be used by any effectors on this object
+	/// Indicates the _Collider will be used by any effectors on this object
 	/// </summary>
 	public bool     usedByEffector    = false;
     /// <summary>
-    /// Transfers over into the collider, when it gets generated
+    /// Transfers over into the _Collider, when it gets generated
     /// </summary>
     public bool     isTrigger         = false;
     /// <summary>
-    /// How wide should the collider be on the Z axis? (Unity units)
+    /// How wide should the _Collider be on the Z axis? (Unity units)
     /// </summary>
     public float    depth             = 4.0f;
 	/// <summary>
@@ -278,7 +278,7 @@ public partial class Ferr2DT_PathTerrain : MonoBehaviour, Ferr2D_IPath, IBlendPa
     /// <summary>
     /// This method gets called automatically whenever the Ferr2DT path gets updated in the 
     /// editor. This will completely recreate the the visual mesh (only) for the terrain. If you want
-    /// To recreate the collider as well, that's a separate call to RecreateCollider.
+    /// To recreate the _Collider as well, that's a separate call to RecreateCollider.
     /// </summary>
     public  void Build    (bool aFullBuild = true) {
 	    //System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
@@ -1092,8 +1092,8 @@ public partial class Ferr2DT_PathTerrain : MonoBehaviour, Ferr2D_IPath, IBlendPa
 
 	#region Colliders
 	/// <summary>
-	/// Creates a mesh or poly and adds it to the collider object. This is automatically calld on Start,
-	/// if createCollider is set to true. This will automatically add a collider if none is 
+	/// Creates a mesh or poly and adds it to the _Collider object. This is automatically calld on Start,
+	/// if createCollider is set to true. This will automatically add a _Collider if none is 
 	/// attached already.
 	/// </summary>
 	public void RecreateCollider() {
@@ -1264,7 +1264,7 @@ public partial class Ferr2DT_PathTerrain : MonoBehaviour, Ferr2D_IPath, IBlendPa
 			if (edgeData.ColliderThickness <= 0)
 				continue;
 
-			// find size information needed to calculate the collider offsets
+			// find size information needed to calculate the _Collider offsets
 			float thickness = edgeData.ColliderThickness * edgeData.GetBodyMaxHeight() * upUV.y;
 			float yOffset   = edgeData.GetYOffsetCollider(invert, upUV);
 			
@@ -1321,12 +1321,12 @@ public partial class Ferr2DT_PathTerrain : MonoBehaviour, Ferr2D_IPath, IBlendPa
 			
 			// turn those points into an edge matching the correct size
 			int bodyVertsCount = points.Count-1;
-			// add the body collider verts
+			// add the body _Collider verts
 			for (int p = bodyVertsCount; p >= 0; p-=1) {
 				points.Add(new Vector2( points[p].x + normals[p].x*(yOffset - thickness), points[p].y + normals[p].y*(yOffset - thickness) ));
 				points[p]= new Vector2( points[p].x + normals[p].x*(yOffset            ), points[p].y + normals[p].y*(yOffset            ) );
 			}
-			// add left collider caps
+			// add left _Collider caps
 			if (!seg.closed && leftCapType != Ferr2D_CapColliderType.Rectangle) {
 				if (leftCapType == Ferr2D_CapColliderType.Circle) {
 					AddCircleColliderCap(false, ref points, normals[bodyVertsCount], endPt, leftCapSize, yOffset, thickness);
@@ -1345,7 +1345,7 @@ public partial class Ferr2DT_PathTerrain : MonoBehaviour, Ferr2D_IPath, IBlendPa
 					}
 				}
 			}
-			// and add the right collider caps
+			// and add the right _Collider caps
 			if (!seg.closed  && rightCapType != Ferr2D_CapColliderType.Rectangle) {
 				if (rightCapType == Ferr2D_CapColliderType.Circle) {
 					AddCircleColliderCap(true, ref points, normals[0], startPt, rightCapSize, yOffset, thickness);
@@ -1505,7 +1505,7 @@ public partial class Ferr2DT_PathTerrain : MonoBehaviour, Ferr2D_IPath, IBlendPa
 		// If it's at extreme angles, we'll need to treat things differently
 		float dot = Vector2.Dot(adjDir, -dir);
 
-		// Snip verts that are in the way of our collider cap
+		// Snip verts that are in the way of our _Collider cap
 		Vector2[] planePts = null, planeDirs = null;
 		if        (dot < -0.95f) { // near parallel facing the same direction
 		} else if (dot >  0.75f) { // near parallel facing towards eachother
