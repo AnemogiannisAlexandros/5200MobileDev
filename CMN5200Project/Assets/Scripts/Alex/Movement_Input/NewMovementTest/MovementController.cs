@@ -10,6 +10,9 @@ public class MovementController : MonoBehaviour
     RaycastOrigins raycastOrigins;
     public int horizontalRaycount = 4;
     public int verticalRaycount = 4;
+    public LayerMask collisionMask;
+    public CollisionInfo collisionsInfo;
+
 
     float horizontalRaySpacing;
     float verticalRaySpacing;
@@ -17,22 +20,88 @@ public class MovementController : MonoBehaviour
     public void Start()
     {
         _Collider = GetComponent<BoxCollider2D>();
+        CalculateRaySpacing();
     }
-    public void Update()
+
+    void HorizontalCollisions(ref Vector3 velocity)
+    {
+        float directionX = Mathf.Sign(velocity.x);
+        float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+
+
+        for (int i = 0; i < horizontalRaycount; i++)
+        {
+            Vector2 rayOrigin;
+            if (directionX == -1)
+            {
+                rayOrigin = raycastOrigins.bottomLeft;
+            }
+            else
+            {
+                rayOrigin = raycastOrigins.bottomRight;
+            }
+            rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.green);
+
+            if (hit)
+            {
+                velocity.x = (hit.distance - skinWidth) * directionX;
+                rayLength = hit.distance;
+
+                collisionsInfo.left = directionX == -1;
+                collisionsInfo.right = directionX == 1;
+            }
+        }
+    }
+
+    void VerticalCollisions(ref Vector3 velocity)
+    {
+        float directionY = Mathf.Sign(velocity.y);
+        float rayLength = Mathf.Abs(velocity.y) + skinWidth;
+
+
+        for (int i = 0; i < verticalRaycount; i++)
+        {
+            Vector2 rayOrigin;
+            if (directionY == -1)
+            {
+                rayOrigin = raycastOrigins.bottomLeft;
+            }
+            else
+            {
+                rayOrigin = raycastOrigins.topLeft;
+            }
+            rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+            Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+
+            if (hit)
+            {
+                velocity.y = (hit.distance - skinWidth) * directionY;
+                rayLength = hit.distance;
+
+                collisionsInfo.below = directionY == -1;
+                collisionsInfo.above = directionY == 1;
+            }
+        }
+    }
+    public void Move(Vector3 velocity)
     {
         UpdateRaycastOrigins();
-        CalculateRaySpacing();
+        collisionsInfo.Reset();
 
-        for (int i = 0; i < verticalRaySpacing; i++) 
+        if (velocity.x != 0)
         {
-            Debug.DrawRay(raycastOrigins.bottomLeft + Vector2.right * verticalRaySpacing * i, Vector2.right * 2, Color.red);
+            HorizontalCollisions(ref velocity);
         }
-        for (int i = 0; i < horizontalRaySpacing; i++) 
+        if (velocity.y != 0)
         {
-            Debug.DrawRay(raycastOrigins.bottomLeft + Vector2.up * horizontalRaySpacing * i, Vector2.up * 2, Color.green);
+            VerticalCollisions(ref velocity);
         }
+        transform.Translate(velocity);
     }
-    void UpdateRaycastOrigins() 
+    void UpdateRaycastOrigins()
     {
         Bounds bounds = _Collider.bounds;
         bounds.Expand(skinWidth * -2);
@@ -52,9 +121,21 @@ public class MovementController : MonoBehaviour
         horizontalRaySpacing = bounds.size.y / (horizontalRaycount - 1);
         verticalRaySpacing = bounds.size.x / (verticalRaycount - 1);
     }
-    struct RaycastOrigins 
+    struct RaycastOrigins
     {
         public Vector2 topLeft, topRight;
         public Vector2 bottomLeft, bottomRight;
     }
+    public struct CollisionInfo
+    {
+        public bool above, below;
+        public bool right, left;
+
+        public void Reset()
+        {
+            above = below = false;
+            left = right = false;
+        }
+    }
+
 }
