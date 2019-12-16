@@ -13,7 +13,7 @@ public class InteractionHandler : MonoBehaviour
         if (interactor.CanInteract())
         {
             interactor.Interact();
-            GetComponent<PlayerInput>().SetPlayerState(PlayerInput.PlayerState.Interacting);
+            GetComponentInParent<PlayerInput>().SetPlayerState(PlayerInput.PlayerState.Interacting);
         }
     }
     private void Update()

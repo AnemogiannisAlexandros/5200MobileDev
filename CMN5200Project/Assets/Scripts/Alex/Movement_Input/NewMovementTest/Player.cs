@@ -49,14 +49,25 @@ public class Player : MonoBehaviour {
 		HandleWallSliding ();
 
 		controller.Move (velocity * Time.deltaTime, directionalInput);
-        isGrounded = controller.collisions.below;
-		if (controller.collisions.above || controller.collisions.below) {
-			if (controller.collisions.slidingDownMaxSlope) {
-				velocity.y += controller.collisions.slopeNormal.y * -gravity * Time.deltaTime;
-			} else {
-				velocity.y = 0;
-			}
-		}
+        if (controller.collisions.below)
+        {
+            isGrounded = true;
+        }
+        else 
+        {
+            isGrounded = false;
+        }
+        if (controller.collisions.above || controller.collisions.below)
+        {
+            if (controller.collisions.slidingDownMaxSlope)
+            {
+                velocity.y += controller.collisions.slopeNormal.y * -gravity * Time.deltaTime;
+            }
+            else
+            {
+                velocity.y = 0;
+            }
+        }
 	}
 
 	public void SetDirectionalInput (Vector2 input) {
@@ -65,9 +76,11 @@ public class Player : MonoBehaviour {
 
 	public void OnJumpInputDown() {
 		if (wallSliding) {
-			if (wallDirX == directionalInput.x) {
-				velocity.x = -wallDirX * wallJumpClimb.x;
-				velocity.y = wallJumpClimb.y;
+			if (wallDirX == directionalInput.x)
+            {
+                //Only Jump if the Player is facing the other direction!
+                //velocity.x = -wallDirX * wallJumpClimb.x;
+				//velocity.y = wallJumpClimb.y;
 			}
 			else if (directionalInput.x == 0) {
 				velocity.x = -wallDirX * wallJumpOff.x;

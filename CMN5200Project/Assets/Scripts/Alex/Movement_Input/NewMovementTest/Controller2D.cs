@@ -16,17 +16,19 @@ public class Controller2D : RaycastController {
 	}
     public bool isNearLedge() 
     {
-        return nearLedge;
+        return nearLedge ;
     }
 	public void Move(Vector2 moveAmount, bool standingOnPlatform) {
 		Move (moveAmount, Vector2.zero, standingOnPlatform);
 	}
 
 	public void Move(Vector2 moveAmount, Vector2 input, bool standingOnPlatform = false) {
-		UpdateRaycastOrigins ();
 
-		collisions.Reset ();
-		collisions.moveAmountOld = moveAmount;
+        UpdateRaycastOrigins();
+
+        collisions.Reset();
+
+        collisions.moveAmountOld = moveAmount;
 		playerInput = input;
 
 		if (moveAmount.y < 0) {
@@ -47,7 +49,8 @@ public class Controller2D : RaycastController {
 		if (standingOnPlatform) {
 			collisions.below = true;
 		}
-	}
+        Debug.Log(collisions.below);
+    }
 
 	void HorizontalCollisions(ref Vector2 moveAmount) {
 		float directionX = collisions.faceDir;

@@ -11,7 +11,8 @@ public class PlayerInput : MonoBehaviour {
     private PlayerState curentState;
     private bool facingRight = true;
     Controller2D playerController;
-
+    public Transform flipTransform;
+    Vector2 directionalInput;
     public enum PlayerState
     {
         Normal,
@@ -25,25 +26,26 @@ public class PlayerInput : MonoBehaviour {
 
     void Start () {
 		player = GetComponent<Player> ();
-        animator = GetComponent<AnimationHandler>();
+        animator = FindObjectOfType<AnimationHandler>();
         curentState = PlayerState.Normal;
-        interactionHandler = GetComponent<InteractionHandler>();
+        interactionHandler = FindObjectOfType<InteractionHandler>();
         playerController = GetComponent<Controller2D>();
     }
 
 	void Update () {
-		Vector2 directionalInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-		player.SetDirectionalInput (directionalInput);
+		directionalInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+        if (directionalInput.x > 0 && !facingRight && curentState != PlayerState.Interacting)
+        {
+            Flip();
+        }
+        else if (directionalInput.x < 0 && facingRight && curentState != PlayerState.Interacting)
+        {
+            Flip();
+        }
+        player.SetDirectionalInput (directionalInput);
         animator.UpdateMovement(directionalInput.x != 0 ? true : false);
         animator.SetGrounded(player.IsGrounded());
-        if (directionalInput.x > 0 && !facingRight && curentState !=PlayerState.Interacting)
-        {
-            Flip();
-        }
-        else if(directionalInput.x<0 && facingRight && curentState != PlayerState.Interacting)
-        {
-            Flip();
-        }
+      
 		if (controller.JumpKeyPressed() && curentState != PlayerState.Interacting) {
 			player.OnJumpInputDown ();
             animator.TriggerJump();
@@ -63,15 +65,15 @@ public class PlayerInput : MonoBehaviour {
              curentState = PlayerState.Normal;   
         }
 	}
-  
-        private void Flip()
+
+    private void Flip()
         {
             // Switch the way the player is labelled as facing.
             facingRight = !facingRight;
 
             // Multiply the player's x local scale by -1.
-            Vector3 theScale = transform.localScale;
+            Vector3 theScale = flipTransform.localScale;
             theScale.x *= -1;
-            transform.localScale = theScale;
+            flipTransform.localScale = theScale;
         }
 }
