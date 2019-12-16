@@ -12,4 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
   m_Name: Bind
   m_EditorClassIdentifier: 
-  m_PoseEntries: []
+  m_PoseEntries:
+  - path: Bones/HipBone
+    localPosition: {x: 0.8752484, y: -1.1061318, z: 0}
+    localRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Bones/HipBone/TorsoBone
+    localPosition: {x: 1.0000554, y: -0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 1}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Bones/HipBone/TorsoBone/HeadBone
+    localPosition: {x: 2.10085, y: 0, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.07202663, w: 0.9974027}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Bones/HipBone/TorsoBone/HeadBone/HoodBone
+    localPosition: {x: 2.6881127, y: 0.0000000151731, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.67245984, w: 0.74013364}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Bones/HipBone/TorsoBone/RCoatBone
+    localPosition: {x: -0.88691366, y: -1.7791734, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.83667755, w: 0.5476959}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Bones/HipBone/TorsoBone/LCoatBone
+    localPosition: {x: -0.3984384, y: 1.0128145, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.99061877, w: 0.13665487}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Bones/HipBone/UpperLLegBone
+    localPosition: {x: 0.24384451, y: 0.47255617, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.9999127, w: 0.013218571}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Bones/HipBone/UpperLLegBone/LLegBone
+    localPosition: {x: 0.9000001, y: -0.000000059604645, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 1}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Bones/HipBone/UpperRLegBone
+    localPosition: {x: 0.25218257, y: -0.550241, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.99989617, w: 0.014413292}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Bones/HipBone/UpperRLegBone/RLegBone
+    localPosition: {x: 0.89999986, y: -0.000000059604645, z: 0}
+    localRotation: {x: 0, y: 0, z: 0, w: 1}
+    localScale: {x: 1, y: 1, z: 1}

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PInput : MonoBehaviour
 {
     private Rigidbody2D _rb;
 

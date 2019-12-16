@@ -9,12 +9,12 @@ public class PushPullInteractor : IInteractor
     private Collider2D raycastHit;
     [SerializeField] private BoxCollider2D interactionCollider;
     bool foundObject;
-    CharacterController2D controller2D;
+    Controller2D controller2D;
 
     private void Awake()
     {
         interactionCollider = GetComponent<BoxCollider2D>();
-        controller2D = GetComponent<CharacterController2D>();
+        controller2D = GetComponent<Controller2D>();
     }
     public override void InteractCondition()
     {
@@ -31,7 +31,7 @@ public class PushPullInteractor : IInteractor
         //    {
         //        if (raycastHit.distance <= raycastDistance)
         //        {
-        if (foundObject && controller2D.IsGrounded())
+        if (foundObject && controller2D.collisions.below)
         {
             Debug.Log("Hittin Collider");
             canInteract = true;
@@ -46,8 +46,8 @@ public class PushPullInteractor : IInteractor
         base.Interact();
         Debug.Log("Hit : " + raycastHit.name);
         GameObject obj = raycastHit.gameObject;
-        float xDistance = GetComponent<CapsuleCollider2D>().size.x / 2 + obj.transform.lossyScale.x / 2;
-        obj.transform.position = Vector3.MoveTowards(obj.transform.position, (transform.position + transform.right * xDistance / 2 * transform.localScale.x * 1.3f), 0.5f);
+        float xDistance = GetComponent<BoxCollider2D>().size.x / 2 + obj.transform.lossyScale.x / 2;
+        obj.transform.position = Vector3.MoveTowards(obj.transform.position, (transform.position + transform.right * xDistance * transform.localScale.x * 2), 0.9f);
         // = transform.position + transform.right * xDistance/2 * transform.localScale.x *1.3f;
         obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         obj.transform.eulerAngles = new Vector3(0,0,0);

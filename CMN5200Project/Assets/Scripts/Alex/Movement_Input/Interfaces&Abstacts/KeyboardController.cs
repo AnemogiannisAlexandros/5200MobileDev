@@ -22,6 +22,11 @@ public class KeyboardController : IInputController
         return Input.GetKeyDown(jumpKey);
     }
 
+    public override bool JumpKeyReleased()
+    {
+        return Input.GetKeyUp(jumpKey);
+    }
+
     public override bool LeftKeyPressed()
     {
         return Input.GetKey(leftKey);
