@@ -20,6 +20,7 @@ public class AnimationHandler : MonoBehaviour
         hit = Physics2D.Raycast(LedgeRaycastTest.transform.position, Vector2.up * -1,Mathf.Infinity,mask);
         Debug.DrawRay(LedgeRaycastTest.transform.position, Vector2.up * -1, Color.green);
         SetLeanValue(hit.distance > 5 ? 1 : 0);
+        Debug.Log(hit.distance);
     }
     public void UpdateMovement(bool moving) 
     {

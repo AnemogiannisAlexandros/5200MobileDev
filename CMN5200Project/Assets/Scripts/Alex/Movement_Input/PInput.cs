@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
-
+/// <summary>
+/// Old Implementation of PlayerInput.
+/// </summary>
 public class PInput : MonoBehaviour
 {
     private Rigidbody2D _rb;

@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour {
 		Vector2 directionalInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 		player.SetDirectionalInput (directionalInput);
         animator.UpdateMovement(directionalInput.x != 0 ? true : false);
-        animator.SetLeanValue(playerController.isNearLedge() ? 1 : 0);
+        animator.SetGrounded(player.IsGrounded());
         if (directionalInput.x > 0 && !facingRight && curentState !=PlayerState.Interacting)
         {
             Flip();

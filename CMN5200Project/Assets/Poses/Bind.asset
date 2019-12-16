@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PoseEntries:
   - path: Bones/HipBone
-    localPosition: {x: 0.8752484, y: -1.1061318, z: 0}
+    localPosition: {x: -2.553668, y: -4.3302507, z: 0}
     localRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
     localScale: {x: 1, y: 1, z: 1}
   - path: Bones/HipBone/TorsoBone
@@ -27,19 +27,19 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - path: Bones/HipBone/TorsoBone/HeadBone/HoodBone
     localPosition: {x: 2.6881127, y: 0.0000000151731, z: 0}
-    localRotation: {x: 0, y: 0, z: 0.67245984, w: 0.74013364}
+    localRotation: {x: 0, y: 0, z: 0.6937161, w: 0.7202486}
     localScale: {x: 1, y: 1, z: 1}
   - path: Bones/HipBone/TorsoBone/RCoatBone
     localPosition: {x: -0.88691366, y: -1.7791734, z: 0}
-    localRotation: {x: 0, y: 0, z: -0.83667755, w: 0.5476959}
+    localRotation: {x: 0, y: 0, z: -0.8482107, w: 0.5296591}
     localScale: {x: 1, y: 1, z: 1}
   - path: Bones/HipBone/TorsoBone/LCoatBone
     localPosition: {x: -0.3984384, y: 1.0128145, z: 0}
-    localRotation: {x: 0, y: 0, z: 0.99061877, w: 0.13665487}
+    localRotation: {x: 0, y: 0, z: 0.9878307, w: 0.15553308}
     localScale: {x: 1, y: 1, z: 1}
   - path: Bones/HipBone/UpperLLegBone
     localPosition: {x: 0.24384451, y: 0.47255617, z: 0}
-    localRotation: {x: 0, y: 0, z: 0.9999127, w: 0.013218571}
+    localRotation: {x: 0, y: 0, z: 0.9999127, w: 0.013218333}
     localScale: {x: 1, y: 1, z: 1}
   - path: Bones/HipBone/UpperLLegBone/LLegBone
     localPosition: {x: 0.9000001, y: -0.000000059604645, z: 0}
