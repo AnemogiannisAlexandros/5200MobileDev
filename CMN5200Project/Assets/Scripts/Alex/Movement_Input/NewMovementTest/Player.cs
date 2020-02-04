@@ -149,4 +149,5 @@ public class Player : MonoBehaviour {
 
          return  velocity.y < -.9f ? true : false;
     }
+
 }
