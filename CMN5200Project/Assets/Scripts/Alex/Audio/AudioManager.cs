@@ -13,37 +13,54 @@ public class AudioManager : MonoBehaviour
 {
     private static AudioManager _instance;
 
-    public static AudioManager Instance { get; }
+    public static AudioManager Instance { get { return _instance; } }
 
-
+    [SerializeField]
+    private bool playFolleys;
+    [Tooltip("All available Music clips")]
     [SerializeField]
     private AudioClip[] musicClips;
     [SerializeField]
+    [Tooltip("All available Folley clips")]
+    private AudioClip[] folleyClips;
+    [Tooltip("Sources playing background clips such as Music/Drones/Folley")]
+    [SerializeField]
     private AudioSource[] backgroundSources;
+    [Tooltip("Sources playing Character sounds such as footsteps,hits,etc")]
     [SerializeField]
     private AudioSource[] characterSources;
+    [Tooltip("Sources playing Environment clips such as Branch Cracks / Animal squeaks etc")]
     [SerializeField]
     private AudioSource[] environmentSources;
 
+
     private void Awake()
     {
-        if (_instance == null)
-        {
-            _instance = this;
-        }
-        else 
+        if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
         }
+        else
+        {
+            _instance = this;
+        }
     }
-    private AudioSource LookForAvailableSource(SourceToUse source) 
+    private void Update()
     {
-        switch (source) 
+        PlayeRandomFolleySounds();
+    }
+    public AudioClip[] GetMusicClips()
+    {
+        return musicClips;
+    }
+    private AudioSource LookForAvailableSource(SourceToUse source)
+    {
+        switch (source)
         {
             case SourceToUse.Background:
-                foreach (AudioSource src in backgroundSources) 
+                foreach (AudioSource src in backgroundSources)
                 {
-                    if (!src.isPlaying) 
+                    if (!src.isPlaying)
                     {
                         return src;
                     }
@@ -71,9 +88,9 @@ public class AudioManager : MonoBehaviour
         }
         return null;
     }
-    private AudioSource FindSource(string gameObjectSource,SourceToUse source) 
+    private AudioSource FindSource(string gameObjectSource, SourceToUse source)
     {
-        switch (source) 
+        switch (source)
         {
             case SourceToUse.Background:
                 foreach (AudioSource src in backgroundSources)
@@ -105,7 +122,8 @@ public class AudioManager : MonoBehaviour
         }
         return null;
     }
-    void Play(AudioClip clip,SourceToUse sourceType) 
+    #region Public Methods
+    public void Play(AudioClip clip, SourceToUse sourceType)
     {
         AudioSource source = LookForAvailableSource(sourceType);
         if (source != null)
@@ -113,13 +131,13 @@ public class AudioManager : MonoBehaviour
             source.clip = clip;
             source.Play();
         }
-        else 
+        else
         {
             Debug.LogError("No Available Source Registered");
         }
 
     }
-    void PlayOneShot(AudioClip clip, SourceToUse sourceType) 
+    public void PlayOneShot(AudioClip clip, SourceToUse sourceType)
     {
         AudioSource source = LookForAvailableSource(sourceType);
         if (source != null)
@@ -131,10 +149,10 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("No Available Source Registered");
         }
     }
-    void Stop(string sourceObject,SourceToUse sourceType) 
+    public void Stop(string sourceObject, SourceToUse sourceType)
     {
         AudioSource source = FindSource(sourceObject, sourceType);
-        if (source != null) 
+        if (source != null)
         {
             source.Stop();
         }
@@ -143,7 +161,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("No Available Source Registered");
         }
     }
-    void Pause(string sourceObject, SourceToUse sourceType) 
+    public void Pause(string sourceObject, SourceToUse sourceType)
     {
         AudioSource source = FindSource(sourceObject, sourceType);
         if (source != null)
@@ -155,7 +173,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("No Available Source Registered");
         }
     }
-    void Resume(string sourceObject, SourceToUse sourceType) 
+    public void Resume(string sourceObject, SourceToUse sourceType)
     {
         AudioSource source = FindSource(sourceObject, sourceType);
         if (source != null)
@@ -167,14 +185,43 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("No Available Source Registered");
         }
     }
-    
-    void PlayDelayed(AudioClip clip, SourceToUse sourceType,float delay) 
+
+    public void PlayDelayed(AudioClip clip, SourceToUse sourceType, float delay)
     {
         AudioSource source = LookForAvailableSource(sourceType);
-        if (source != null) 
+        if (source != null)
         {
             source.clip = clip;
             source.PlayDelayed(delay);
         }
     }
+    public void PlayeOnSource(string sourceObject, SourceToUse sourceType, AudioClip clip)
+    {
+        AudioSource source = FindSource(sourceObject, sourceType);
+        source.Stop();
+        source.clip = clip;
+        source.Play();
+    }
+    #endregion
+
+    #region Private Methods
+    private float folleyTimer=0;
+    private void PlayeRandomFolleySounds()
+    {
+        if (playFolleys)
+        {
+            float randomTimer = Random.Range(60, 240);
+            if (folleyTimer <= randomTimer)
+            {
+                folleyTimer += Time.deltaTime;
+            }
+            else
+            {
+                AudioSource source =  LookForAvailableSource(SourceToUse.Environment);
+                source.PlayOneShot(folleyClips[Random.Range(0, folleyClips.Length)]);
+                folleyTimer = 0;
+            }
+        }
+    }
+    #endregion
 }

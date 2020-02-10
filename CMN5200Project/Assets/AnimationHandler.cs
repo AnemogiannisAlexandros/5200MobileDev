@@ -41,7 +41,7 @@ public class AnimationHandler : MonoBehaviour
     {
         animator.SetInteger("LeanValue", lean);
     }
-    public void ResetJump() 
+    public void ResetJump()
     {
         animator.ResetTrigger("Jump");
     }
