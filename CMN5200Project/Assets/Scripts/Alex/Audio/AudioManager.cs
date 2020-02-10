@@ -23,6 +23,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     [Tooltip("All available Folley clips")]
     private AudioClip[] folleyClips;
+    [SerializeField]
+    [Header("Character Clips")]
+    private AudioClip[] footsteps;
+    [SerializeField]
+    private AudioClip[] jumpFallLand;
     [Tooltip("Sources playing background clips such as Music/Drones/Folley")]
     [SerializeField]
     private AudioSource[] backgroundSources;
@@ -122,7 +127,40 @@ public class AudioManager : MonoBehaviour
         }
         return null;
     }
+    public void PlayCharacterFootsteps()
+    {
+        AudioSource source = LookForAvailableSource(SourceToUse.Character);
+        source.PlayOneShot(footsteps[Random.Range(0, footsteps.Length)]);
+    }
+    public void PlayCharacterJump(int part)
+    {
+        AudioSource source = LookForAvailableSource(SourceToUse.Character);
+        source.PlayOneShot(jumpFallLand[part]);
+    }
     #region Public Methods
+    public void PlayLooping(AudioClip clip, SourceToUse sourceType)
+    {
+        AudioSource source = LookForAvailableSource(sourceType);
+        if(source != null)
+        {
+            source.loop = true;
+            source.clip = clip;
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
+            else
+            {
+                source.loop = false;
+
+            }
+
+        }
+        else
+        {
+            Debug.LogError("No Available Source Registered");
+        }
+    }
     public void Play(AudioClip clip, SourceToUse sourceType)
     {
         AudioSource source = LookForAvailableSource(sourceType);
@@ -210,7 +248,7 @@ public class AudioManager : MonoBehaviour
     {
         if (playFolleys)
         {
-            float randomTimer = Random.Range(60, 240);
+            float randomTimer = Random.Range(30, 160);
             if (folleyTimer <= randomTimer)
             {
                 folleyTimer += Time.deltaTime;
@@ -222,6 +260,6 @@ public class AudioManager : MonoBehaviour
                 folleyTimer = 0;
             }
         }
-    }
+    }   
     #endregion
 }
