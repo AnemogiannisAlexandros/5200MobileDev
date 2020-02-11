@@ -45,29 +45,32 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update() {
-		CalculateVelocity ();
-		HandleWallSliding ();
+		if (!PlayerManager.Instance.IsDead)
+		{
+			CalculateVelocity();
+			HandleWallSliding();
 
-		controller.Move (velocity * Time.deltaTime, directionalInput);
-        if (controller.collisions.below)
-        {
-            isGrounded = true;
-        }
-        else 
-        {
-            isGrounded = false;
-        }
-        if (controller.collisions.above || controller.collisions.below)
-        {
-            if (controller.collisions.slidingDownMaxSlope)
-            {
-                velocity.y += controller.collisions.slopeNormal.y * -gravity * Time.deltaTime;
-            }
-            else
-            {
-                velocity.y = 0;
-            }
-        }
+			controller.Move(velocity * Time.deltaTime, directionalInput);
+			if (controller.collisions.below)
+			{
+				isGrounded = true;
+			}
+			else
+			{
+				isGrounded = false;
+			}
+			if (controller.collisions.above || controller.collisions.below)
+			{
+				if (controller.collisions.slidingDownMaxSlope)
+				{
+					velocity.y += controller.collisions.slopeNormal.y * -gravity * Time.deltaTime;
+				}
+				else
+				{
+					velocity.y = 0;
+				}
+			}
+		}
 	}
 
 	public void SetDirectionalInput (Vector2 input) {

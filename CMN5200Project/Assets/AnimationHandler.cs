@@ -19,13 +19,17 @@ public class AnimationHandler : MonoBehaviour
     }
     void Update()
     {
-        hit = Physics2D.Raycast(LedgeRaycastTest.transform.position, Vector2.up * -1,Mathf.Infinity,mask);
-        Debug.DrawRay(LedgeRaycastTest.transform.position, Vector2.up * -1, Color.green);
-        SetLeanValue(hit.distance > 5 ? 1 : 0);
-        if (!player.IsGrounded())
+        if (!PlayerManager.Instance.IsDead) 
         {
-            //TO DO 
+            hit = Physics2D.Raycast(LedgeRaycastTest.transform.position, Vector2.up * -1, Mathf.Infinity, mask);
+            Debug.DrawRay(LedgeRaycastTest.transform.position, Vector2.up * -1, Color.green);
+            SetLeanValue(hit.distance > 5 ? 1 : 0);
+            if (!player.IsGrounded())
+            {
+                //TO DO 
+            }
         }
+        
     }
     public void UpdateMovement(bool moving) 
     {
@@ -50,6 +54,15 @@ public class AnimationHandler : MonoBehaviour
     public void ResetJump()
     {
         animator.ResetTrigger("Jump");
+    }
+    public void SetPlayerDead(int deathIndex) 
+    {
+        animator.SetTrigger("IsDead");
+        animator.SetInteger("DeathIndex", deathIndex);
+    }
+    public void SetRespawn() 
+    {
+        animator.SetTrigger("Respawn");
     }
     public void PlayFootStepSound()
     {

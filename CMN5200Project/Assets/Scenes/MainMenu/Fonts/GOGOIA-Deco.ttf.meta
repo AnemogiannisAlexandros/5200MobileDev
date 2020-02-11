@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: f66d808011599a24a8fe3590039ce3f8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: GOGOIA
+  fontNames:
+  - GOGOIA
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: be00a975e8fff214ea90281aa13ed12a, type: 3}
+  - {fileID: 12800000, guid: 4a03411b4ce4a7949a1e9e85fa412337, type: 3}
+  - {fileID: 12800000, guid: c0e5c55bc2c8e0e409b8822a98a136a2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

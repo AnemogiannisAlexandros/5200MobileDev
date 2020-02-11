@@ -1,7 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum PlayerState
+{
+    Normal,
+    Interacting,
+}
+
 [RequireComponent (typeof (Player))]
+
 public class PlayerInput : MonoBehaviour {
 
 	Player player;
@@ -13,11 +20,7 @@ public class PlayerInput : MonoBehaviour {
     Controller2D playerController;
     public Transform flipTransform;
     Vector2 directionalInput;
-    public enum PlayerState
-    {
-        Normal,
-        Interacting,
-    }
+
 
     public void SetPlayerState(PlayerState state)
     {
@@ -33,36 +36,41 @@ public class PlayerInput : MonoBehaviour {
     }
 
 	void Update () {
-		directionalInput = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-        if (directionalInput.x > 0 && !facingRight && curentState != PlayerState.Interacting)
+        if (!PlayerManager.Instance.IsDead)
         {
-            Flip();
-        }
-        else if (directionalInput.x < 0 && facingRight && curentState != PlayerState.Interacting)
-        {
-            Flip();
-        }
-        player.SetDirectionalInput (directionalInput);
-        animator.UpdateMovement(directionalInput.x != 0 ? true : false);
-        animator.SetGrounded(player.IsGrounded());
-      
-		if (controller.JumpKeyPressed() && curentState != PlayerState.Interacting) {
-			player.OnJumpInputDown ();
-            animator.TriggerJump();
-		}
-		if (controller.JumpKeyReleased() && curentState != PlayerState.Interacting) {
-			player.OnJumpInputUp ();
-            animator.ResetJump();
-		}
-        animator.SetGrounded(player.IsGrounded());
-        animator.SetFalling(player.isFalling() ? true : false);       
-        if (controller.InteractKeyPressed())
-        {
-            interactionHandler.Interact();
-        }
-        else
-        { 
-             curentState = PlayerState.Normal;   
+            directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if (directionalInput.x > 0 && !facingRight && curentState != PlayerState.Interacting)
+            {
+                Flip();
+            }
+            else if (directionalInput.x < 0 && facingRight && curentState != PlayerState.Interacting)
+            {
+                Flip();
+            }
+            player.SetDirectionalInput(directionalInput);
+            animator.UpdateMovement(directionalInput.x != 0 ? true : false);
+            animator.SetGrounded(player.IsGrounded());
+
+            if (controller.JumpKeyPressed() && curentState != PlayerState.Interacting)
+            {
+                player.OnJumpInputDown();
+                animator.TriggerJump();
+            }
+            if (controller.JumpKeyReleased() && curentState != PlayerState.Interacting)
+            {
+                player.OnJumpInputUp();
+                animator.ResetJump();
+            }
+            animator.SetGrounded(player.IsGrounded());
+            animator.SetFalling(player.isFalling() ? true : false);
+            if (controller.InteractKeyPressed())
+            {
+                interactionHandler.Interact();
+            }
+            else
+            {
+                curentState = PlayerState.Normal;
+            }
         }
 	}
 
