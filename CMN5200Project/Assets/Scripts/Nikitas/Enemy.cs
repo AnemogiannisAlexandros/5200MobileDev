@@ -1,41 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
-{
+{ 
     [SerializeField] private GameObject flame;
+ 
+     private float Firerate;
+     private float Nextfire;
 
-    private float Firerate;
-    private float Nextfire;
+     public Healthbar healthbar;
 
+     public int maxHealth = 100;
+     public int currentHealth;
 
-    void Start()
-    {
-        Firerate = 1f;
+    Rigidbody2D rb;
+
+     
+     void Start()
+     {
+        Firerate = 1f; 
         Nextfire = Time.time;
-    }
+        currentHealth = maxHealth;
+        healthbar.MaxHealth(maxHealth);
+        rb = GetComponent<Rigidbody2D>();
+     }
 
-
-    void Update()
-    {
+     void Update()
+     {
         FireTime();
-    }
+     }
 
-    // void OnTriggerEnter2D(Collider2D col)
-    // {
-    //   if (col.gameObject.tag.Equals("Box"))
-    //   {
-    // FireTime();
-     //}
-      // }
+     void OnCollisionEnter2D(Collision2D col)
+     {
+         if (col.gameObject.tag == ("FallenTree"))
+         {
+             takeDamage(20);
+             Debug.Log("dmgg");
+         }
+     }
 
-void FireTime()
+
+    void FireTime()
     {
         if (Time.time > Nextfire)
         {
             Instantiate(flame, transform.position, Quaternion.identity);
             Nextfire = Time.time + Firerate;
         }
+    }
+
+    void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthbar.SetHealth((currentHealth));
+
     }
 }

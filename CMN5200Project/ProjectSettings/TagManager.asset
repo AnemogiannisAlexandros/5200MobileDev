@@ -10,6 +10,7 @@ TagManager:
   - Spikes
   - Rocks
   - CheckPoint
+  - Box
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Ground
   - Interactable
   - Player
-  - 
+  - Interaction
   - 
   - 
   - 
