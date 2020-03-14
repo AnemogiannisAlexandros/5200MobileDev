@@ -19,18 +19,6 @@ public class PushPullInteractor : IInteractor
     public override void InteractCondition()
     {
         allowMovement = true;
-        //raycastHit = Physics2D.Raycast(transform.position, new Vector2(transform.localScale.x,0), raycastDistance, m_Interactable);
-        //Debug.DrawRay(transform.position, new Vector2(transform.localScale.x, 0) * raycastDistance, Color.green);
-        //raycastHit = Physics2D.BoxCast(transform.position + new Vector3(transform.localScale.x*1.5f,-.2f,0), transform.localScale * raycastDistance,0,new Vector2(transform.position.x * transform.localScale.x,transform.position.y),raycastDistance,m_Interactable);
-        //Debug.Log(canInteract);
-        //Debug.Log(raycastHit.point);
-
-        //if (raycastHit._Collider != null)
-        //{
-        //    if (raycastHit._Collider.gameObject != gameObject)
-        //    {
-        //        if (raycastHit.distance <= raycastDistance)
-        //        {
         if (foundObject && player.IsGrounded())
         {
             Debug.Log("Hittin Collider");
@@ -46,9 +34,8 @@ public class PushPullInteractor : IInteractor
         base.Interact();
         Debug.Log("Hit : " + raycastHit.name);
         GameObject obj = raycastHit.gameObject;
-        float xDistance = GetComponent<BoxCollider2D>().size.x / 2 + obj.transform.lossyScale.x / 2;
-        obj.transform.position = Vector3.MoveTowards(obj.transform.position, (transform.position + transform.right * xDistance * transform.localScale.x), 0.9f);
-        // = transform.position + transform.right * xDistance/2 * transform.localScale.x *1.3f;
+        float xDistance = GetComponent<BoxCollider2D>().size.x / 2 + obj.transform.lossyScale.x/2;
+        obj.transform.position = Vector3.MoveTowards(obj.transform.position, (transform.position + transform.right * xDistance * transform.localScale.x/2), 0.9f);
         obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         obj.transform.eulerAngles = new Vector3(0,0,0);
         obj.GetComponent<Rigidbody2D>().angularVelocity = 0;
@@ -77,8 +64,4 @@ public class PushPullInteractor : IInteractor
             foundObject = false;
         }
     }
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawCube(transform.position + new Vector3(transform.localScale.x*1.5f,-.2f, 0), transform.localScale * raycastDistance);
-    //}
 }

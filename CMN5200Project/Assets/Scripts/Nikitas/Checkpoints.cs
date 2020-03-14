@@ -9,7 +9,6 @@ public class Checkpoints : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerManager.Instance.checkpointPos = transform.GetChild(0).position;
-            Debug.Log("dffssfdsfdfdsfdfqfq");
         }
     }
 }

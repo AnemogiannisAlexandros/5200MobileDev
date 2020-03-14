@@ -18,7 +18,10 @@ public class InteractionHandler : MonoBehaviour
     }
     private void Update()
     {
-        interactor.InteractCondition();
+        if (PlayerManager.Instance.AllowInput) 
+        {
+            interactor.InteractCondition();
+        }
     }
     public void SetInteractor(IInteractor interactor) 
     {

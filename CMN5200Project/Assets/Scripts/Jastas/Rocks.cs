@@ -18,7 +18,7 @@ namespace Jastas {
                 if (other.gameObject.CompareTag("Player")) {
                     rocks[i].bodyType = RigidbodyType2D.Dynamic;
                     rocks[i].mass = 1000;
-                    GameManager.Instance.Player.Damage();
+                    PlayerManager.Instance.Damage();
                     FindObjectOfType<AnimationHandler>().SetPlayerDead(1);
                     Debug.Log("player damage");
                 }

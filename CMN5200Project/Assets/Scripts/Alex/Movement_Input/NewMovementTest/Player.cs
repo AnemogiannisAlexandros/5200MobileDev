@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 	float accelerationTimeAirborne = .2f;
 	float accelerationTimeGrounded = .1f;
     float accelerationTimeInteracting = .4f;
+	[SerializeField]
 	float moveSpeed = 6;
 
 	public Vector2 wallJumpClimb;
@@ -45,8 +46,9 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update() {
-		if (!PlayerManager.Instance.IsDead)
+		if (!PlayerManager.Instance.IsDead && PlayerManager.Instance.AllowInput)
 		{
+
 			CalculateVelocity();
 			HandleWallSliding();
 

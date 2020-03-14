@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     public Vector2 checkpointPos;
     private float respawnTimer = 0;
     public bool IsDead { get; set; }
+    public bool AllowInput { get; set; }
     public int Health { get; set; }
 
     private void Awake()
@@ -27,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         IsDead = false;
+        AllowInput = true;
         Health = 1;
     }
 

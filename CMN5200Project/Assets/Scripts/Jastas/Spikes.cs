@@ -10,7 +10,7 @@ namespace Jastas
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                GameManager.Instance.Player.Damage();
+                PlayerManager.Instance.Damage();
                 FindObjectOfType<AnimationHandler>().SetPlayerDead(0);
             }
         }
