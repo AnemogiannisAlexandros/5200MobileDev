@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-namespace Jastas
-{
+
+namespace Jastas {
 
     public class GameManager : MonoBehaviour {
-    
-        // Design pattern
+        
         static GameManager instance;
 
         private void Awake() {
@@ -25,5 +24,4 @@ namespace Jastas
         // An instance of player
         public PlayerManager Player { get; private set; }
     }
-
 }
