@@ -55,4 +55,12 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Player is dead");
         }
     }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == ("Boss"))
+        {
+            IsDead = true;
+            Debug.Log("DEAD");
+        }
+    }
 }

@@ -11,6 +11,8 @@ TagManager:
   - Rocks
   - CheckPoint
   - Box
+  - turn
+  - Boss
   layers:
   - Default
   - TransparentFX
