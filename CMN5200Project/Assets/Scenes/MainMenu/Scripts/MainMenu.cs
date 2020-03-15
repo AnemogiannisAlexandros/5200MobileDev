@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void Play()
     {
+        SceneTransitonManager.Instance.StopAllCoroutines();
        StartCoroutine(SceneTransitonManager.Instance.BeginSceneFadeOut());
     }
 

@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Alex_Main.unity
     guid: e1cf47506207a5f438e81e340cfd2c5b
+  - enabled: 1
+    path: Assets/Scenes/BossScene.unity
+    guid: 97242bfea10fdb44fbffe62623638b82
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: 84cf6448115633f4fb111a7b549953eb
   m_configObjects: {}

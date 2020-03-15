@@ -21,12 +21,20 @@ public class SceneTransitonManager : MonoBehaviour
         }
         else 
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         SceneManager.sceneLoaded += OnNewSceneLoaded;
         DontDestroyOnLoad(this.gameObject);
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) 
+        {
+            Debug.Log("Working");
+            StopAllCoroutines();
+            StartCoroutine(BeginSceneFadeOut());
+        }
+    }
     private void OnNewSceneLoaded(Scene current, LoadSceneMode mode) 
     {
         StartCoroutine(BeginSceneFadeIn());
@@ -74,6 +82,14 @@ public class SceneTransitonManager : MonoBehaviour
             audioMixer.SetFloat("MasterAudio", currentVolume - 0.2f);
             yield return new WaitForEndOfFrame();
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
+        
     }
 }

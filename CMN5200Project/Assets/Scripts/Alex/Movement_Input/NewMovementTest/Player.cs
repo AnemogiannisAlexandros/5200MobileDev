@@ -45,11 +45,11 @@ public class Player : MonoBehaviour {
 		minJumpVelocity = Mathf.Sqrt (2 * Mathf.Abs (gravity) * minJumpHeight);
 	}
 
-	void Update() {
+	void Update()
+	{
+		CalculateVelocityX();
 		if (!PlayerManager.Instance.IsDead && PlayerManager.Instance.AllowInput)
 		{
-
-			CalculateVelocity();
 			HandleWallSliding();
 
 			controller.Move(velocity * Time.deltaTime, directionalInput);
@@ -144,12 +144,16 @@ public class Player : MonoBehaviour {
 
 	}
 
-	void CalculateVelocity() {
-		float targetVelocityX = directionalInput.x * moveSpeed;
-		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
+	void CalculateVelocityX()
+	{
+		if (!PlayerManager.Instance.IsDead && PlayerManager.Instance.AllowInput) 
+		{
+			float targetVelocityX = directionalInput.x * moveSpeed;
+			velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+		}
 		velocity.y += gravity * Time.deltaTime;
 	}
-    public bool isFalling() 
+	public bool isFalling() 
     {
 
          return  velocity.y < -.9f ? true : false;

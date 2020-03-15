@@ -39,7 +39,7 @@ namespace Jastas
                 collider.offset = new Vector2(0, 0);
                 collider.size = new Vector2(24, 1);
                 fallenObject.mass = 10000;
-                GameManager.Instance.Player.Damage();
+                PlayerManager.Instance.Damage();
                 FindObjectOfType<AnimationHandler>().SetPlayerDead(2);
             }
         }

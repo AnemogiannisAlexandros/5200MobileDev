@@ -1,29 +1,20 @@
 ﻿using UnityEngine;
-namespace Jastas
-{
 
-    public class GameManager : MonoBehaviour {
-    
-        // Design pattern
-        static GameManager instance;
+public class GameManager : MonoBehaviour {
 
-        private void Awake() {
-            instance = this;
-            Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+    private static GameManager m_instance;
+    public static GameManager Instance { get { return m_instance; }}
+
+    private void Awake()
+    {
+        if (m_instance == null)
+        {
+            m_instance = this;
         }
-    
-        // GameManager Instance
-        public static GameManager Instance {
-            get {
-                if (instance == null) {
-                    Debug.LogError("Game Manager is null");
-                }
-                return instance;
-            }
+        else 
+        {
+            Destroy(this.gameObject);
         }
-    
-        // An instance of player
-        public PlayerManager Player { get; private set; }
+        DontDestroyOnLoad(this.gameObject);
     }
-
 }

@@ -4,58 +4,65 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
-{ 
-    [SerializeField] private GameObject flame;
- 
-     private float Firerate;
-     private float Nextfire;
+{
+    GameObject Boss;
+    public Healthbar healthbar;
 
-     public Healthbar healthbar;
+    public int maxHealth = 100;
+    public int currentHealth;
 
-     public int maxHealth = 100;
-     public int currentHealth;
+    public float speed;
+    public float dis;
+    private bool Rside = true;
+    public Transform groundDetection;  
 
-    Rigidbody2D rb;
-
-     
-     void Start()
-     {
-        Firerate = 1f; 
-        Nextfire = Time.time;
+    void Start()
+    {
         currentHealth = maxHealth;
-        healthbar.MaxHealth(maxHealth);
-        rb = GetComponent<Rigidbody2D>();
-     }
+        healthbar.MaxHealth(maxHealth);   
+    }
 
      void Update()
      {
-        FireTime();
+        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        RaycastHit2D groundinfo = Physics2D.Raycast(groundDetection.position, Vector2.down, dis);
+        if (groundinfo.collider == false)
+        {
+            if (Rside == true)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                Rside = false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                Rside = true;
+            }
+        }
      }
 
-     void OnCollisionEnter2D(Collision2D col)
+     void OnTriggerEnter2D(Collider2D col)
      {
+        if (col.gameObject.CompareTag("Player")) 
+        {
+            PlayerManager.Instance.Damage();
+            FindObjectOfType<AnimationHandler>().SetPlayerDead(1);
+        }
          if (col.gameObject.tag == ("FallenTree"))
          {
-             takeDamage(20);
-             Debug.Log("dmgg");
-         }
+            takeDamage(20);
+            Debug.Log("dmgg");
+
+            if (currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }   
+         }      
      }
-
-
-    void FireTime()
-    {
-        if (Time.time > Nextfire)
-        {
-            Instantiate(flame, transform.position, Quaternion.identity);
-            Nextfire = Time.time + Firerate;
-        }
-    }
 
     void takeDamage(int damage)
     {
         currentHealth -= damage;
-
         healthbar.SetHealth((currentHealth));
-
     }
 }
