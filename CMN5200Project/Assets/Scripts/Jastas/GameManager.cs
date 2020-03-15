@@ -6,7 +6,7 @@ namespace Jastas {
         
         static GameManager instance;
 
-        private void Awake() {
+        void Awake() {
             instance = this;
             Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         }
