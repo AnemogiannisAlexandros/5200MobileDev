@@ -23,7 +23,8 @@ public class PInput : MonoBehaviour
     private CharacterController2D _CharacterController;
 
     public float moveSpeed = 40f;
-    private bool jump = false;
+    public bool jump = false;
+    public bool interacting = false;
     float horizontalMovement=0f;
 
     public void Start()
@@ -97,7 +98,7 @@ public class PInput : MonoBehaviour
     }
     public void Interact()
     {
-        interactionHandler.Interact();
+        interacting = true;
       //  Debug.Log("Called");
     }
 }

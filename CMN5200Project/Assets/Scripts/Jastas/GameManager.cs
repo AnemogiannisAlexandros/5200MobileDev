@@ -1,20 +1,24 @@
 ﻿using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+namespace Jastas {
 
-    private static GameManager m_instance;
-    public static GameManager Instance { get { return m_instance; }}
+    public class GameManager : MonoBehaviour {
 
-    private void Awake()
-    {
-        if (m_instance == null)
+        private static GameManager m_instance;
+
+        public static GameManager Instance { get { return m_instance; }}
+
+        void Awake()
         {
-            m_instance = this;
+            if (m_instance == null)
+            {
+                m_instance = this;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+            DontDestroyOnLoad(this.gameObject);
         }
-        else 
-        {
-            Destroy(this.gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
     }
 }

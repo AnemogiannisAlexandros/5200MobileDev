@@ -19,6 +19,7 @@ public class Log : MonoBehaviour
         fallenObject.bodyType = RigidbodyType2D.Kinematic;
         collider = GetComponent<BoxCollider2D>();
         StartCoroutine(WaitSeconds(timer));
+        StartCoroutine(RespawnAfterTime(30));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,11 +36,17 @@ public class Log : MonoBehaviour
         StartCoroutine(WaitSeconds(timer));
         rb.velocity =  Vector3.zero;
         rb.angularVelocity = 0;
+        StartCoroutine(RespawnAfterTime(30));
     }
 
     IEnumerator WaitSeconds(float timer)
     {
         yield return new WaitForSeconds(timer);
         fallenObject.bodyType = RigidbodyType2D.Dynamic;
+    }
+    IEnumerator RespawnAfterTime(float time) 
+    {
+        yield return new WaitForSecondsRealtime(time);
+        Respawn();
     }
 }

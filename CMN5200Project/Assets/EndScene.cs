@@ -11,4 +11,9 @@ public class EndScene : MonoBehaviour
             StartCoroutine(SceneTransitonManager.Instance.BeginSceneFadeOut());
         }
     }
+    public void Transition() 
+    {
+        SceneTransitonManager.Instance.StopAllCoroutines();
+        StartCoroutine(SceneTransitonManager.Instance.BeginSceneFadeOut());
+    }
 }

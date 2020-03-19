@@ -1,17 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public enum PlayerState
+public class PlayerMobileInput : MonoBehaviour
 {
-    Normal,
-    Interacting,
-}
-
-[RequireComponent (typeof (Player))]
-
-public class PlayerInput : MonoBehaviour {
-
-	Player player;
+    Player player;
     AnimationHandler animator;
     public IInputController controller;
     InteractionHandler interactionHandler;
@@ -27,26 +20,28 @@ public class PlayerInput : MonoBehaviour {
         curentState = state;
     }
 
-    void Start () {
-		player = GetComponent<Player> ();
+    void Start()
+    {
+        player = GetComponent<Player>();
         animator = FindObjectOfType<AnimationHandler>();
         curentState = PlayerState.Normal;
         interactionHandler = FindObjectOfType<InteractionHandler>();
         playerController = GetComponent<Controller2D>();
     }
 
-	void Update () {
+    void Update()
+    {
         if (!PlayerManager.Instance.IsDead)
         {
             if (PlayerManager.Instance.AllowInput)
             {
-                Debug.Log(directionalInput);
+
                 directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-                if (directionalInput.x > 0 && !facingRight && (curentState != PlayerState.Interacting||interactionHandler.GetInteractor().CanFlip()))
+                if (directionalInput.x > 0 && !facingRight && curentState != PlayerState.Interacting)
                 {
                     Flip();
                 }
-                else if (directionalInput.x < 0 && facingRight && (curentState != PlayerState.Interacting || interactionHandler.GetInteractor().CanFlip()))
+                else if (directionalInput.x < 0 && facingRight && curentState != PlayerState.Interacting)
                 {
                     Flip();
                 }
@@ -66,10 +61,6 @@ public class PlayerInput : MonoBehaviour {
                 }
                 animator.SetGrounded(player.IsGrounded());
                 animator.SetFalling(player.isFalling() ? true : false);
-                if (controller.InteractionKeyReleased())
-                {
-                    interactionHandler.InteractUp();
-                }
                 if (controller.InteractKeyPressed())
                 {
                     interactionHandler.Interact();
@@ -78,24 +69,23 @@ public class PlayerInput : MonoBehaviour {
                 {
                     curentState = PlayerState.Normal;
                 }
-
             }
             else
             {
                 animator.GetComponent<Animator>().Play("Idle");
             }
         }
-        
-	}
+
+    }
 
     private void Flip()
-        {
-            // Switch the way the player is labelled as facing.
-            facingRight = !facingRight;
+    {
+        // Switch the way the player is labelled as facing.
+        facingRight = !facingRight;
 
-            // Multiply the player's x local scale by -1.
-            Vector3 theScale = flipTransform.localScale;
-            theScale.x *= -1;
-            flipTransform.localScale = theScale;
-        }
+        // Multiply the player's x local scale by -1.
+        Vector3 theScale = flipTransform.localScale;
+        theScale.x *= -1;
+        flipTransform.localScale = theScale;
+    }
 }

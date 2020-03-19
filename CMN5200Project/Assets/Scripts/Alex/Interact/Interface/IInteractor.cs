@@ -7,6 +7,16 @@ public abstract class IInteractor : MonoBehaviour
 {
     protected bool canInteract;
     protected bool allowMovement;
+    protected bool allowFlip;
+    protected bool allowJump;
+    public bool CanFlip() 
+    {
+        return allowFlip;
+    }
+    public bool CanJump() 
+    {
+        return allowJump;
+    }
     public virtual bool CanInteract() 
     {
         return canInteract;
@@ -15,7 +25,12 @@ public abstract class IInteractor : MonoBehaviour
     {
        
     }
-    public virtual void Interact() 
+    public virtual void InteractDown()
     {
+
+    }
+    public virtual void InteractUp()
+    {
+
     }
 }

@@ -1,8 +1,10 @@
-﻿//using UnityEngine.EventSystems;
-//using UnityEngine.UI;
+﻿//using System.Collections;
+//using System.Collections.Generic;
 //using UnityEngine;
+//using UnityEngine.EventSystems;
 
-//public class MoveButtonScript : MonoBehaviour ,IPointerDownHandler,IPointerUpHandler,IPointerExitHandler
+
+//public class MoveRightButton : MonoBehaviour , IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 //{
 //    private PlayerInput playerInput;
 //    void Awake()
@@ -15,12 +17,12 @@
 //    {
 //        if (isPressed)
 //        {
-//            playerInput.controller.leftButton = true;
+//            playerInput.controller.rightButton = true;
 //        }
 //        else
 //        {
-//            playerInput.controller.leftButton = false;
-//        }       
+//            playerInput.controller.rightButton = false;
+//        }
 //    }
 //    public void OnPointerDown(PointerEventData eventData)
 //    {

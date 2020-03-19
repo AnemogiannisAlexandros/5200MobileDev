@@ -1,19 +1,29 @@
 ﻿using UnityEngine;
 
-namespace Jastas
-{
-    public class Spikes : MonoBehaviour
-    {
+
+
+    public class Spikes : MonoBehaviour {
 
         // Player damage when collides with this gameObject
-        private void OnCollisionEnter2D(Collision2D other)
+        void OnCollisionEnter2D(Collision2D other) {
+        Debug.Log("Collision");
+        if (other.gameObject.CompareTag("Player")) 
         {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                PlayerManager.Instance.Damage();
-                FindObjectOfType<AnimationHandler>().SetPlayerDead(0);
-            }
+        Debug.Log("CollisionIn");
+            FindObjectOfType<AnimationHandler>().SetPlayerDead(1);
+
+            PlayerManager.Instance.Damage();
+        }
+        }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Collision");
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("CollisionIn");
+            FindObjectOfType<AnimationHandler>().SetPlayerDead(1);
+
+            PlayerManager.Instance.Damage();
         }
     }
 }
-

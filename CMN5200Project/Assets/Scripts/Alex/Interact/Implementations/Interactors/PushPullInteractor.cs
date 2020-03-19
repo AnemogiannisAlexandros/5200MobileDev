@@ -15,6 +15,8 @@ public class PushPullInteractor : IInteractor
     {
         interactionCollider = GetComponent<BoxCollider2D>();
         player = GetComponentInParent<Player>();
+        allowJump = false;
+        allowFlip = false;
     }
     public override void InteractCondition()
     {
@@ -29,9 +31,8 @@ public class PushPullInteractor : IInteractor
             canInteract = false;
         }
     }
-    public override void Interact()
+    public override void InteractDown()
     {
-        base.Interact();
         Debug.Log("Hit : " + raycastHit.name);
         GameObject obj = raycastHit.gameObject;
         float xDistance = GetComponent<BoxCollider2D>().size.x / 2 + obj.transform.lossyScale.x/2;

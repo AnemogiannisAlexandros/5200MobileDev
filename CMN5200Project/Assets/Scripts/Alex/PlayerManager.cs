@@ -50,7 +50,6 @@ public class PlayerManager : MonoBehaviour
                 IsDead = false;
                 respawnTimer = 0;
                 rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-
             }
         }
     }
@@ -61,7 +60,7 @@ public class PlayerManager : MonoBehaviour
         if (Health < 1)
         {
             IsDead = true;
-            Debug.Log("Player is dead");
+            StartCoroutine(SceneTransitonManager.Instance.SimpleCrossFade());
         }
     }
 }

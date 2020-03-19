@@ -49,6 +49,7 @@ public class AudioManager : MonoBehaviour
         {
             _instance = this;
         }
+        DontDestroyOnLoad(this.gameObject);
     }
     private void Update()
     {

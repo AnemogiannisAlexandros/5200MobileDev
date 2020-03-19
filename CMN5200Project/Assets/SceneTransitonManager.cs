@@ -40,6 +40,23 @@ public class SceneTransitonManager : MonoBehaviour
         StartCoroutine(BeginSceneFadeIn());
     }
 
+    public IEnumerator SimpleCrossFade() 
+    {
+        while (blackPanel.color.a < 1)
+        {
+            Debug.Log("FirstPart");
+            blackPanel.color += new Color(0, 0, 0, 0.006f);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(1);
+        while (blackPanel.color.a > 0)
+        {
+            Debug.Log("SecondPart");
+            blackPanel.color -= new Color(0, 0, 0, 0.006f);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public IEnumerator BeginSceneFadeIn()
     {
         while (blackPanel.color.a > 0)

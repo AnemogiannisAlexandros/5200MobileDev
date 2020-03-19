@@ -12,6 +12,11 @@ public class KeyboardController : IInputController
     public KeyCode jumpKey;
     public KeyCode interactKey;
 
+    public override bool InteractionKeyReleased()
+    {
+        return Input.GetKeyUp(interactKey);
+    }
+
     public override bool InteractKeyPressed()
     {
         return Input.GetKey(interactKey);
