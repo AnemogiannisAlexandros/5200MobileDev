@@ -1,2 +1,2 @@
-# 5200MobileDev
-5200 Εργασία
+# Into the forest
+A little game we based on Limbo for a school project
